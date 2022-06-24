@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{31ADD3CB-E40E-46CC-AB19-57BC477DD4D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysManager.API.Admin", "SysManager.API.Admin\SysManager.API.Admin.csproj", "{0691977F-7E91-4A9B-8211-0A27B0C8F034}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysManager.Application", "SysManager.Application\SysManager.Application.csproj", "{7D7ADAF6-30D7-422F-8368-783D3DC7BA10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0691977F-7E91-4A9B-8211-0A27B0C8F034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0691977F-7E91-4A9B-8211-0A27B0C8F034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0691977F-7E91-4A9B-8211-0A27B0C8F034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0691977F-7E91-4A9B-8211-0A27B0C8F034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D7ADAF6-30D7-422F-8368-783D3DC7BA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D7ADAF6-30D7-422F-8368-783D3DC7BA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D7ADAF6-30D7-422F-8368-783D3DC7BA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D7ADAF6-30D7-422F-8368-783D3DC7BA10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA617E41-1733-4576-AC39-DD004B4AFCF5}
+	EndGlobalSection
+EndGlobal
