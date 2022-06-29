@@ -23,8 +23,9 @@ namespace SysManager.API.Admin.Controllers
         [HttpPost("create-account")]
         public async Task<IActionResult> Post([FromBody]UserPostRequest request)
         {
-            Console.WriteLine("Inicio do processo");
+            Console.WriteLine("Inicio do processo" + DateTime.Now + "\r\n");
             var response = await _userService.PostAsync(request);
+            Console.WriteLine("Final do processo" + DateTime.Now + "\r\n");
             return Utils.Convert(response);
         }
 
