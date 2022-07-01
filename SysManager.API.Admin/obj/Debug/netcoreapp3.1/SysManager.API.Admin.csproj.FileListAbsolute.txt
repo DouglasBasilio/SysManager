@@ -44,3 +44,4 @@ C:\git\SysManager\SysManager.API.Admin\bin\Debug\netcoreapp3.1\System.Configurat
 C:\git\SysManager\SysManager.API.Admin\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\git\SysManager\SysManager.API.Admin\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\git\SysManager\SysManager.API.Admin\bin\Debug\netcoreapp3.1\appsettings.json
+C:\git\SysManager\SysManager.API.Admin\bin\Debug\netcoreapp3.1\FluentValidation.dll

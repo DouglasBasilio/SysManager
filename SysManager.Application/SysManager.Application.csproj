@@ -11,11 +11,10 @@
     <Folder Include="Contracts\Products\Response\" />
     <Folder Include="Contracts\Products\Request\" />
     <Folder Include="Contracts\Users\Response\" />
-    <Folder Include="Errors\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
 		<PackageReference Include="Dapper" Version="2.0.35" />

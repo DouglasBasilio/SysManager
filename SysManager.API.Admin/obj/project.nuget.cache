@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qCyPY1/Q3AjKNNkZQ/UCacNO8rT3aTpuLBjCqIPQXeh3SqM4ny6d0pFeBfDtbtq7C35dv0iFmSygLf85Cm1xWw==",
+  "dgSpecHash": "nEXXfmFT3yHjzHMhnIHB2d2wWsAAQaFBcIk2XNYQ4CIAPHLUgx6AT8Jp4jedNxSnh28bW7V5lgwjisVsY7mqHQ==",
   "success": true,
   "projectFilePath": "C:\\git\\SysManager\\SysManager.API.Admin\\SysManager.API.Admin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Douglas\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
