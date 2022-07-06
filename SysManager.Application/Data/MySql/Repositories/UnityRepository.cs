@@ -43,12 +43,12 @@ namespace SysManager.Application.Data.MySql.Repositories
         }
 
         //GET
-        public async Task<UserEntity> GetByIdAsync(Guid id)
+        public async Task<UnityEntity> GetByIdAsync(Guid id)
         {
             var _sql = $"select id, name, active from unity where id = '{id}' limit 1";
             using (var cnx = _context.Connection())
             {
-                var result = await cnx.QueryFirstOrDefaultAsync<UserEntity>(_sql);
+                var result = await cnx.QueryFirstOrDefaultAsync<UnityEntity>(_sql);
                 return result;
             }
         }

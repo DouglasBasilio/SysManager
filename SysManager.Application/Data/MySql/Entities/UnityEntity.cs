@@ -13,6 +13,10 @@ namespace SysManager.Application.Data.MySql.Entities
     [Table("unity")]
     public class UnityEntity
     {
+        public UnityEntity()
+        {
+
+        }
         public UnityEntity(UnityPostRequest request)
         {
             this.Id = Guid.NewGuid();
