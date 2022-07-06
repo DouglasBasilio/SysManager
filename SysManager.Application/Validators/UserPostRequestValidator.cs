@@ -10,7 +10,7 @@ using System.Text;
 namespace SysManager.Application.Validators
 {
     /*
-     Classe de validação que recebe um Generics, passando o nosso contato
+     Classe de validação que recebe um Generics, passando o nosso contrato
 
      */
     public class UserPostRequestValidator : AbstractValidator<UserPostRequest>

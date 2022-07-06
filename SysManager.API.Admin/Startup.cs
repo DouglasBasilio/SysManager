@@ -29,6 +29,10 @@ namespace SysManager.API.Admin
             // injeção de dependência chamada Scope, define o ciclo de vida do nosso serviço
             services.AddScoped<UserService>();
             services.AddScoped<UserRepository>();
+
+            services.AddScoped<UnityService>();
+            services.AddScoped<UnityRepository>();
+
             services.AddScoped<MySqlContext>();
             services.Configure<AppConnectionSettings>(option => Configuration.GetSection("ConnectionStrings").Bind(option));
 

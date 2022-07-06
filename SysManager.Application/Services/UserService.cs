@@ -1,6 +1,7 @@
 ﻿using SysManager.Application.Contracts.Users.Request;
 using SysManager.Application.Data.MySql.Entities;
 using SysManager.Application.Data.MySql.Repositories;
+using SysManager.Application.Errors;
 using SysManager.Application.Helpers;
 using SysManager.Application.Validators;
 using System;
@@ -33,8 +34,22 @@ namespace SysManager.Application.Services
             Console.WriteLine("Sucesso" + DateTime.Now + "\r\n");
 
             return Utils.SuccessData(response);
+        }
+        
+        public async Task<ResultData> PutAsync(UserPutRequest request)
+        {
+            var existUser = await _userRepository.GetUserByUserNameAndEmail(request.UserName, request.Email);
 
-            //return Utils.SuccessData(await _userRepository.CreateUser());
+            if (existUser != null)
+            {
+                var result = await _userRepository.UpdateUser(request.NewPassword, existUser.Id);
+
+                if (!result.HasErrors)
+                    return Utils.SuccessData(result);
+
+                return Utils.ErrorData(result);
+            }
+            return Utils.ErrorData(SysManagerErrors.User_Put_BadRequest_User_Not_Found.Description());
         }
     }
 }

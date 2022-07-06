@@ -42,15 +42,23 @@ namespace SysManager.Application.Data.MySql.Repositories
                     return new DefaultResponse(entity.Id.ToString(), "Conta criada com sucesso", false);
             }
 
-            return new DefaultResponse("", "Erro ao tentar criar uma conta", true); ;
+            return new DefaultResponse("", "Erro ao tentar criar uma conta", true); 
         }
 
-        public async Task<UserEntity> UpdateUser(string password, Guid id)
+        public async Task<DefaultResponse> UpdateUser(string newPassword, Guid id)
         {
-            var _sql = @$"UPDATE user set password = '{password}' where id = '{id}'";
+            var _sql = @$"UPDATE user set password = '{newPassword}' where id = '{id}'";
 
-            return new UserEntity();
+            using (var cnx = _context.Connection())
+            {
+                var result = await cnx.ExecuteAsync(_sql);
+                if (result > 0)
+                    return new DefaultResponse(id.ToString(), "Senha de usuário alterada com sucesso", false);
+            }
+
+            return new DefaultResponse(id.ToString(), "Erro ao tentar alterar senha de um usuário", true);
         }
+
         public async Task<UserEntity> GetUserByEmail(string email)
         {
             var _sql = @$"SELECT id, userName, email, password, active from user
@@ -59,11 +67,21 @@ namespace SysManager.Application.Data.MySql.Repositories
             using (var cnx = _context.Connection())
             {
                // executa o script no banco de dados
-               var result = await cnx.QueryFirstOrDefaultAsync<UserEntity>(_sql);
-               return result;
+               return await cnx.QueryFirstOrDefaultAsync<UserEntity>(_sql);
             }
-
         }
+
+        public async Task<UserEntity> GetUserByUserNameAndEmail(string username, string email)
+        {
+            var _sql = @$"SELECT id, userName, email, password, active from user
+                          WHERE username='{username}' and email = '{email}' limit 1";
+
+            using (var cnx = _context.Connection())
+            {
+                return await cnx.QueryFirstOrDefaultAsync<UserEntity>(_sql);
+            }
+        }
+
         public async Task<UserEntity> InactiveUser(Guid id)
         {
             var _sql = @$"UPDATE user set active = false where id = '{id}'";

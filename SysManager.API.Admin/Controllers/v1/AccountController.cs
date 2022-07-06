@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SysManager.API.Admin.Controllers
+namespace SysManager.API.Admin.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
@@ -23,16 +23,20 @@ namespace SysManager.API.Admin.Controllers
         [HttpPost("create-account")]
         public async Task<IActionResult> Post([FromBody]UserPostRequest request)
         {
-            Console.WriteLine("Inicio do processo" + DateTime.Now + "\r\n");
             var response = await _userService.PostAsync(request);
-            Console.WriteLine("Final do processo" + DateTime.Now + "\r\n");
+            return Utils.Convert(response);
+        }
+
+        [HttpPut("recovery-account")]
+        public async Task<IActionResult> Put([FromBody] UserPutRequest request)
+        {
+            var response = await _userService.PutAsync(request);
             return Utils.Convert(response);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> PostLogin(UserPostRequest request)
         {
-            Console.WriteLine("Início do processo 2");
             return Utils.Convert(new ResultData(false));
         }
     }
