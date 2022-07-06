@@ -1,8 +1,11 @@
 ﻿using Dapper;
 using SysManager.Application.Contracts;
+using SysManager.Application.Contracts.Unity.Request;
 using SysManager.Application.Data.MySql.Entities;
+using SysManager.Application.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,6 +66,43 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
         }
 
+        public async Task<PaginationResponse<UnityEntity>> GetByFilterAsync(UnityGetFilterRequest filter)
+        {
+            var _sql = new StringBuilder("select * from unity where 1=1");
+            var _where = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+                _where.Append($" AND name like '%{filter.Name}%'");
+            if (filter.Active.ToLower() != "todos")
+            {
+                string _activeFilter = "";
+
+                if (filter.Active.ToLower() == "ativos")
+                    _activeFilter = " AND active = true";
+                else if (filter.Active.ToLower() == "inativos")
+                    _activeFilter = " AND active = false";
+
+                _where.Append(_activeFilter);
+            }
+            _sql.Append(_where);
+
+            if (filter.page > 0 && filter.pageSize > 0)
+                _sql.Append($" limit {filter.pageSize * (filter.page - 1)}, {filter.pageSize}");
+            using (var cnx = _context.Connection())
+            {
+                var result = await cnx.QueryAsync<UnityEntity>(_sql.ToString());
+                var resultCount = await cnx.QueryAsync<int>("select count(*) as count from unity where 1=1" + _where.ToString());
+                return new PaginationResponse<UnityEntity>
+                {
+                    _page = filter.page,
+                    _pageSize = filter.pageSize,
+                    _total = resultCount.FirstOrDefault()
+,
+                    Items = result.ToArray()
+                };
+            }
+        }
+    
         //DELETE
         public async Task<DefaultResponse> DeleteByIdAsync(Guid id)
         {
@@ -75,5 +115,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
             return new DefaultResponse(id.ToString(), "Falha ao tentar excluir uma unidade de medida", true);
         }
+
+
     }
 }

@@ -39,6 +39,13 @@ namespace SysManager.API.Admin.Controllers.v1
             return Utils.Convert(response);
         }
 
+        [HttpGet("getbyfilter")]
+        public async Task<IActionResult> GetByFilter([FromQuery] UnityGetFilterRequest request)
+        {
+            var response = await _unityService.GetByFilterAsync(request);
+            return Utils.Convert(response);
+        }
+
         [HttpDelete("id/{id}")]
         public async Task<IActionResult> DeleteById([FromRoute] Guid id)
         {

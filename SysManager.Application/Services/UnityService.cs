@@ -55,6 +55,12 @@ namespace SysManager.Application.Services
             return Utils.ErrorData(SysManagerErrors.Unity_Get_BadRequest_Id_Is_Invalid_Or_Inexistent.Description());
         }
 
+        public async Task<ResultData> GetByFilterAsync(UnityGetFilterRequest request)
+        {
+            var result = await _unityRepository.GetByFilterAsync(request);
+            return Utils.SuccessData(result);
+        }
+
         public async Task<ResultData> DeleteByIdAsync(Guid id)
         {
             var response = await _unityRepository.GetByIdAsync(id);
