@@ -32,7 +32,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         //PUT
         public async Task<DefaultResponse> UpdateAsync(UnityEntity entity)
         {
-            var _sql = $"update unity set name = '{entity.Name}', active = '{entity.Active}' where id = {entity.Id})";
+            var _sql = $"update unity set name = '{entity.Name}', active = {entity.Active} where id = '{entity.Id}'";
             using (var cnx = _context.Connection())
             {
                 var result = await cnx.ExecuteAsync(_sql);
@@ -45,7 +45,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         //GET
         public async Task<UserEntity> GetByIdAsync(Guid id)
         {
-            var _sql = $"select id, name, active from unity = where id = '{id}' limit 1";
+            var _sql = $"select id, name, active from unity where id = '{id}' limit 1";
             using (var cnx = _context.Connection())
             {
                 var result = await cnx.QueryFirstOrDefaultAsync<UserEntity>(_sql);
