@@ -58,6 +58,18 @@ namespace SysManager.Application.Errors
         #region GET Unity
         [Description("Unidade de medida inexistente ou inválida")]
         Unity_Get_BadRequest_Id_Is_Invalid_Or_Inexistent,
+
+        [Description("Nome da Unidade de medida não pode ser nulo ou vazio")]
+        Unity_Get_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("O campo 'Active' não pode estar vazio. Utilize 'todos', 'ativos' ou 'inativos')")]
+        Unity_Get_BadRequest_Active_Cannot_Be_Empty,
+
+        [Description("Página informada precisa ser maior que zero")]
+        Unity_Get_BadRequest_Page_More_Than_Zero,
+
+        [Description("Itens por página precisa ser maior do que zero")]
+        Unity_Get_BadRequest_pageSize_More_Than_Zero,
         #endregion
     }
 }
