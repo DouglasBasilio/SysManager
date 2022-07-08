@@ -12,10 +12,6 @@ namespace SysManager.Application.Validators.Unity
     {
         public UnityGetFilterRequestValidator()
         {
-            RuleFor(contract => contract.Name)
-               .Must(name => !string.IsNullOrEmpty(name))
-               .WithMessage(SysManagerErrors.Unity_Get_BadRequest_Name_Cannot_Be_Null_Or_Empty.Description());
-
             RuleFor(contract => contract.Active)
                .Must(active => active == "todos" || active == "ativos" || active == "inativos")
                .WithMessage(SysManagerErrors.Unity_Get_BadRequest_Active_Cannot_Be_Empty.Description());

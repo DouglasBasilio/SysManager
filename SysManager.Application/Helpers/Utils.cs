@@ -10,17 +10,15 @@ namespace SysManager.Application.Helpers
 {
     public static class Utils
     {
-        public static ResultData<T> SuccessData<T>(T _data)
+        public static ResultData SuccessData(object _data)
         {
-            var result = new ResultData<T>(_data);
-            result.Success = true;
+            var result = new ResultData(_data, true);
             return result;
         }
 
-        public static ResultData<T> ErrorData<T>(T _data)
+        public static ResultData ErrorData(object _data)
         {
-            var result = new ResultData<T>(_data);
-            result.Success = false;
+            var result = new ResultData(_data, true);
             return result;
         }
 

@@ -34,10 +34,11 @@ namespace SysManager.API.Admin.Controllers.v1
             return Utils.Convert(response);
         }
 
+        
         [HttpPost("login")]
         public async Task<IActionResult> PostLogin(UserPostRequest request)
         {
-            return Utils.Convert(new ResultData(false));
+            return Utils.Convert(new ResultData("",false));
         }
     }
 }
