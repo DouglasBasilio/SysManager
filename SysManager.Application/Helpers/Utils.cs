@@ -50,5 +50,16 @@ namespace SysManager.Application.Helpers
         {
             return valorEnum.GetAttribute<DescriptionAttribute>().Description;
         }
+
+        public static string GetDateExpired(int value)
+        {
+            var date = DateTime.Now.AddMinutes(value);
+            return date.ToString("yyyyMMddHHmmss");
+        }
+
+        public static string ToBase64Encode(this string data)
+        {
+            return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
+        }
     }
 }

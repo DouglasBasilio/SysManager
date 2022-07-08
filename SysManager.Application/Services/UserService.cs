@@ -1,4 +1,5 @@
-﻿using SysManager.Application.Contracts.Users.Request;
+﻿using SysManager.Application.Contracts;
+using SysManager.Application.Contracts.Users.Request;
 using SysManager.Application.Data.MySql.Entities;
 using SysManager.Application.Data.MySql.Repositories;
 using SysManager.Application.Errors;
@@ -50,6 +51,32 @@ namespace SysManager.Application.Services
                 return Utils.ErrorData(result);
             }
             return Utils.ErrorData(SysManagerErrors.User_Put_BadRequest_User_Not_Found.Description());
+        }
+
+        public async Task<UserEntity> Authenticate(string user, string password)
+        {
+            var response = await _userRepository.GetUserByCredentialsAsync(user, password);
+            return response;
+        }
+
+        public async Task<ResultData> PostLoginAsync(UserPostLoginRequest user)
+        {
+            var openData = user.Email + ":" + user.Password + ":" + Utils.GetDateExpired(10);
+            var dataBytes = Utils.ToBase64Encode(openData);
+            var getuser = await _userRepository.GetUserByCredentialsAsync(user.Email, user.Password);
+
+            if (getuser != null)
+            {
+                var response = new AccountResponse
+                {
+                    Id = getuser.Id.ToString(),
+                    Message = "Token successful",
+                    Token = dataBytes
+                };
+                return Utils.SuccessData(response);
+            }
+
+            return Utils.ErrorData(new AccountResponse { Message = "Token Fail" });
         }
     }
 }

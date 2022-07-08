@@ -36,9 +36,10 @@ namespace SysManager.API.Admin.Controllers.v1
 
         
         [HttpPost("login")]
-        public async Task<IActionResult> PostLogin(UserPostRequest request)
+        public async Task<IActionResult> PostLogin([FromBody] UserPostLoginRequest request)
         {
-            return Utils.Convert(new ResultData("",false));
+            var response = await _userService.PostLoginAsync(request);
+            return Utils.Convert(response);
         }
     }
 }

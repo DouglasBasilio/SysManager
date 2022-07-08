@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OrderIntegrator.Application.Herlpers;
 using SysManager.Application.Data.MySql;
 using SysManager.Application.Data.MySql.Repositories;
 using SysManager.Application.Services;
@@ -22,6 +24,9 @@ namespace SysManager.API.Admin
             Configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
+
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             BeforeConfigureServices(services);
             services.AddApiVersioning();
@@ -44,6 +49,8 @@ namespace SysManager.API.Admin
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseMvc();
         }
     }

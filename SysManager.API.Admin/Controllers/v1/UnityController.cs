@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SysManager.Application.Contracts.Unity.Request;
 using SysManager.Application.Helpers;
 using SysManager.Application.Services;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SysManager.API.Admin.Controllers.v1
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class UnityController : ControllerBase
