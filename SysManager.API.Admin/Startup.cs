@@ -38,6 +38,9 @@ namespace SysManager.API.Admin
             services.AddScoped<UnityService>();
             services.AddScoped<UnityRepository>();
 
+            services.AddScoped<ProductTypeService>();
+            services.AddScoped<ProductTypeRepository>();
+
             services.AddScoped<MySqlContext>();
             services.Configure<AppConnectionSettings>(option => Configuration.GetSection("ConnectionStrings").Bind(option));
 

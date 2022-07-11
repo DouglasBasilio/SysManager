@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Contracts\ProductsType\Response\" />
     <Folder Include="Contracts\Products\Response\" />
     <Folder Include="Contracts\Products\Request\" />
     <Folder Include="Contracts\Users\Response\" />

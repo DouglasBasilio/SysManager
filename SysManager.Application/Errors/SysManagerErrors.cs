@@ -71,5 +71,55 @@ namespace SysManager.Application.Errors
         [Description("É necessário informaro tamanho da página maior que zero")]
         Unity_Get_BadRequest_pageSize_More_Than_Zero,
         #endregion
+
+        #region POST ProductType
+        [Description("É necessário informar o nome do tipo de produto")]
+        ProductType_Post_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar se o tipo de produto está ativo ou inativo")]
+        ProductType_Post_BadRequest_Active_Cannot_Be_Diferent_True_Or_False,
+
+        [Description("Já existe um tipo de produto com esse nome")]
+        ProductType_Post_BadRequest_Name_Cannot_Be_Duplicated,
+        #endregion
+
+        #region PUT ProductType
+        [Description("É necessário informar o id do tipo de produto")]
+        ProductType_Put_BadRequest_Id_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar o nome do tipo de produto")]
+        ProductType_Put_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar se o tipo de produto é ativo ou inativo")]
+        ProductType_Put_BadRequest_Active_Cannot_Be_Diferent_True_Or_False,
+
+        [Description("Já existe um tipo de produto com esse nome")]
+        ProductType_Put_BadRequest_Name_Cannot_Be_Duplicated,
+
+        [Description("Tipo de produto inválido ou inexistente")]
+        ProductType_Put_BadRequest_Id_Is_Invalid_Or_Inexistent,
+        #endregion
+
+        #region DELETE ProductType
+        [Description("Tipo de produto inválido ou inexistente")]
+        ProductType_Delete_BadRequest_Id_Is_Invalid_Or_Inexistent,
+        #endregion
+
+        #region GET ProductType
+        [Description("Tipo de produto inexistente ou inválido")]
+        ProductType_Get_BadRequest_Id_Is_Invalid_Or_Inexistent,
+
+        [Description("É necessário informar o nome para o filtro")]
+        ProductType_Get_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar o filtro de ativos ou inativos")]
+        ProductType_Get_BadRequest_Active_Cannot_Be_Empty,
+
+        [Description("É necessário informar a página maior que zero")]
+        ProductType_Get_BadRequest_Page_More_Than_Zero,
+
+        [Description("É necessário informaro tamanho da página maior que zero")]
+        ProductType_Get_BadRequest_pageSize_More_Than_Zero,
+        #endregion
     }
 }

@@ -20,7 +20,7 @@ namespace SysManager.Application.Validators.Unity
 
             RuleFor(contract => contract.Active)
                 .Must(active => active == true || active == false)
-                .WithMessage(SysManagerErrors.Unity_Post_BadRequest_Name_Cannot_Be_Null_Or_Empty.Description());
+                .WithMessage(SysManagerErrors.Unity_Post_BadRequest_Active_Cannot_Be_Diferent_True_Or_False.Description());
 
             RuleFor(contract => contract.Name)
                 .Must(name =>
