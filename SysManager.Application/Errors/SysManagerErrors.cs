@@ -121,5 +121,55 @@ namespace SysManager.Application.Errors
         [Description("É necessário informaro tamanho da página maior que zero")]
         ProductType_Get_BadRequest_pageSize_More_Than_Zero,
         #endregion
+
+        #region POST Category
+        [Description("É necessário informar o nome da categoria")]
+        Category_Post_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar se a categoria está ativa ou inativa")]
+        Category_Post_BadRequest_Active_Cannot_Be_Diferent_True_Or_False,
+
+        [Description("Já existe uma categoria com esse nome")]
+        Category_Post_BadRequest_Name_Cannot_Be_Duplicated,
+        #endregion
+
+        #region PUT Category
+        [Description("É necessário informar o id da categoria")]
+        Category_Put_BadRequest_Id_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar o nome da categoria")]
+        Category_Put_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar se a categoria é ativa ou inativa")]
+        Category_Put_BadRequest_Active_Cannot_Be_Diferent_True_Or_False,
+
+        [Description("Já existe uma categoria com esse nome")]
+        Category_Put_BadRequest_Name_Cannot_Be_Duplicated,
+
+        [Description("Categoria inválida ou inexistente")]
+        Category_Put_BadRequest_Id_Is_Invalid_Or_Inexistent,
+        #endregion
+
+        #region DELETE Category
+        [Description("Categoria inválida ou inexistente")]
+        Category_Delete_BadRequest_Id_Is_Invalid_Or_Inexistent,
+        #endregion
+
+        #region GET Category
+        [Description("Categoria inexistente ou inválida")]
+        Category_Get_BadRequest_Id_Is_Invalid_Or_Inexistent,
+
+        [Description("É necessário informar o nome para o filtro")]
+        Category_Get_BadRequest_Name_Cannot_Be_Null_Or_Empty,
+
+        [Description("É necessário informar o filtro de ativos ou inativos")]
+        Category_Get_BadRequest_Active_Cannot_Be_Empty,
+
+        [Description("É necessário informar a página maior que zero")]
+        Category_Get_BadRequest_Page_More_Than_Zero,
+
+        [Description("É necessário informaro tamanho da página maior que zero")]
+        Category_Get_BadRequest_pageSize_More_Than_Zero,
+        #endregion
     }
 }

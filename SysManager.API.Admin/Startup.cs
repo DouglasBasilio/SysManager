@@ -41,6 +41,9 @@ namespace SysManager.API.Admin
             services.AddScoped<ProductTypeService>();
             services.AddScoped<ProductTypeRepository>();
 
+            services.AddScoped<CategoryService>();
+            services.AddScoped<CategoryRepository>();
+
             services.AddScoped<MySqlContext>();
             services.Configure<AppConnectionSettings>(option => Configuration.GetSection("ConnectionStrings").Bind(option));
 
