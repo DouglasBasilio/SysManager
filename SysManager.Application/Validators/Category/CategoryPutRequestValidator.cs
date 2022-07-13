@@ -28,7 +28,7 @@ namespace SysManager.Application.Validators.Category
             RuleFor(contract => contract)
                .Must(contract =>
                {
-                   var exists = repository.GetByNameAsync(contract.Name).Result;
+                   var exists = repository.GetCategoryByNameAsync(contract.Name).Result;
 
                    if (exists != null)
                        if (exists.Id != contract.Id)
@@ -40,7 +40,7 @@ namespace SysManager.Application.Validators.Category
             RuleFor(contract => contract.Id)
                 .Must(id =>
                 {
-                    var exists = repository.GetByIdAsync(id).Result;
+                    var exists = repository.GetCategoryByIdAsync(id).Result;
                     return exists != null;
                 })
                 .WithMessage(SysManagerErrors.Category_Put_BadRequest_Id_Is_Invalid_Or_Inexistent.Description());

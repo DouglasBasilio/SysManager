@@ -47,7 +47,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         }
 
         //GET
-        public async Task<ProductTypeEntity> GetByIdAsync(Guid id)
+        public async Task<ProductTypeEntity> GetProductTypeByIdAsync(Guid id)
         {
             var _sql = $"select id, name, active from producttype where id = '{id}' limit 1";
             using (var cnx = _context.Connection())

@@ -45,7 +45,7 @@ namespace SysManager.Application.Services
 
         public async Task<ResultData> GetByIdAsync(Guid id)
         {
-            var response = await _productTypeRepository.GetByIdAsync(id);
+            var response = await _productTypeRepository.GetProductTypeByIdAsync(id);
 
             if (response != null)
                 return Utils.SuccessData(response);
@@ -61,7 +61,7 @@ namespace SysManager.Application.Services
 
         public async Task<ResultData> DeleteByIdAsync(Guid id)
         {
-            var response = await _productTypeRepository.GetByIdAsync(id);
+            var response = await _productTypeRepository.GetProductTypeByIdAsync(id);
             if (response != null)
             {
                 var result = await _productTypeRepository.DeleteByIdAsync(id);

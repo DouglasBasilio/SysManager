@@ -35,6 +35,9 @@ namespace SysManager.API.Admin
             services.AddScoped<UserService>();
             services.AddScoped<UserRepository>();
 
+            services.AddScoped<ProductService>();
+            services.AddScoped<ProductRepository>();
+
             services.AddScoped<UnityService>();
             services.AddScoped<UnityRepository>();
 

@@ -24,7 +24,7 @@ namespace SysManager.Application.Validators.Category
             RuleFor(contract => contract.Name)
                 .Must(name =>
                 {
-                    var exists = repository.GetByNameAsync(name).Result;
+                    var exists = repository.GetCategoryByNameAsync(name).Result;
                     return exists == null;
 
                 })

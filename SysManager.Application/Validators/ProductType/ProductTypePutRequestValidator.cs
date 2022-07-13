@@ -37,7 +37,7 @@ namespace SysManager.Application.Validators.ProductType
             RuleFor(contract => contract.Id)
                 .Must(id =>
                 {
-                    var exists = repository.GetByIdAsync(id).Result;
+                    var exists = repository.GetProductTypeByIdAsync(id).Result;
                     return exists != null;
                 })
                 .WithMessage(SysManagerErrors.ProductType_Put_BadRequest_Id_Is_Invalid_Or_Inexistent.Description());
