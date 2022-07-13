@@ -1,6 +1,7 @@
 ﻿using SysManager.Application.Contracts.ProductsType.Request;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -25,6 +26,7 @@ namespace SysManager.Application.Data.MySql.Entities
             this.Active = request.Active;
         }
 
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("id")]
         public Guid Id { get; set; }
 
