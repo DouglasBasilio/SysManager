@@ -22,8 +22,10 @@ namespace SysManager.Application.Data.MySql.Repositories
 
         public async Task<DefaultResponse> CreateAsync(ProductEntity entity)
         {
-            string strQuery = @$"insert into product(id, name, productCode, productTypeId, categoryId, unityId, costPrice, percentage, price, active)
-                                          Values('{entity.Id}', '{entity.Name}', '{entity.ProductCode}', '{entity.ProductTypeId}', '{entity.CategoryId}', '{entity.UnityId}', {entity.CostPrice}, {entity.Percentage}, {entity.Price}, {entity.Active})";
+            string strQuery = @$"insert into product (id, name, productCode, productTypeId, categoryId, unityId, costPrice, percentage, price, active)
+                                          Values('{entity.Id}', '{entity.Name}', '{entity.ProductCode}', 
+                                          '{entity.ProductTypeId}', '{entity.CategoryId}', '{entity.UnityId}', 
+                                          '{entity.CostPrice}', {entity.Percentage}, {entity.Price}, {entity.Active})";
 
             using (var cnx = _context.Connection())
             {
@@ -39,11 +41,11 @@ namespace SysManager.Application.Data.MySql.Repositories
         {
             string strQuery = $@"update product set name = '{entity.Name}', 
                                                     active = {entity.Active},
-                                                    productCode = '{entity.ProductTypeId}', 
-                                                    productTypeId = '{entity.CategoryId}',
-                                                    categoryId = '{entity.UnityId}',
-                                                    unityId = '{entity.CostPrice}', 
-                                                    costPrice = {entity.Percentage},
+                                                    productCode = '{entity.ProductCode}', 
+                                                    productTypeId = '{entity.ProductTypeId}',
+                                                    categoryId = '{entity.CategoryId}',
+                                                    unityId = '{entity.UnityId}', 
+                                                    costPrice = {entity.CostPrice},
                                                     percentage = {entity.Percentage},
                                                     price = {entity.Price}
                                                     where id = '{entity.Id}'";

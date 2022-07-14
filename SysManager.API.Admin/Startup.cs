@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderIntegrator.Application.Herlpers;
 using SysManager.Application.Data.MySql;
 using SysManager.Application.Data.MySql.Repositories;
 using SysManager.Application.Services;
+using System.Globalization;
 
 namespace SysManager.API.Admin
 {
@@ -58,6 +60,14 @@ namespace SysManager.API.Admin
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var supportedCultures = new[] { new CultureInfo("en-US") };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseMvc();
