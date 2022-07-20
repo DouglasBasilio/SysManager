@@ -15,7 +15,11 @@ const routes: Routes = [
       title: 'Home'
     },
     children: [
-
+      {
+        path: '',
+        loadChildren: () =>
+        import('./components/account/account.module').then((m) => m.AccountModule)
+      }
     ]
   },
   
