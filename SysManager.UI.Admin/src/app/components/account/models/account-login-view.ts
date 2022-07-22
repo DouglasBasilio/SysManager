@@ -1,4 +1,4 @@
-export class AccountPostLoginRequest {
+export class AccountLoginView {
     email: string = '';
     password: string = '';
 
