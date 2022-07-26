@@ -6,10 +6,7 @@ namespace SysManager.Application.Contracts
 {
     public class AccountResponse
     {
-        public AccountResponse()
-        {
-
-        }
+        public AccountResponse(){}
 
         public string Id { get; set; }
         public string Message { get; set; }

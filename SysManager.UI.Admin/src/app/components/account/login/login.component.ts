@@ -1,14 +1,18 @@
+import { AccountToken } from './../models/account-token-view';
+import { AccountLoginView } from './../models/account-login-view';
 import { AccountService } from './../../../services/account-service';
 import { AccountView } from './../models/account-view';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html'
+    selector: 'app-login',
+    templateUrl: './login.component.html'
 })
 
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
+    returnUrl: string = ''
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -19,21 +23,16 @@ export class RegisterComponent implements OnInit {
 
     }
 
-    createAccount() {
-
+    login(){
         this.hideMessage();
         var iUserName = (<HTMLInputElement>document.getElementById("username")).value;
-        var iEmail = (<HTMLInputElement>document.getElementById("email")).value;
         var iPassword = (<HTMLInputElement>document.getElementById("password")).value;
-        var iPasswordConfirm = (<HTMLInputElement>document.getElementById("passwordConfirm")).value;
+
+        // contrato
+        const user = new AccountLoginView(iUserName, iPassword);
 
         if (iUserName == '' || iUserName == undefined) {
             this.showMessage('É necessário informar um usuário, verifique');
-            return;
-        }
-
-        if (iEmail == '' || iEmail == undefined) {
-            this.showMessage('É necessário informar um e-mail, verifique');
             return;
         }
 
@@ -42,23 +41,19 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        if (iPasswordConfirm == '' || iPasswordConfirm == undefined) {
-            this.showMessage('É necessário informar uma senha de confirmação, verifique');
-            return;
-        }
+        this.accountService.login(user).subscribe((response: any) => {
 
-        if (iPassword != iPasswordConfirm) {
-            this.showMessage('Senhas invalidas, verifique');
-            return;
-        }
-        console.log('Tudo certo, vamos preparar para chamar o backEnd');
+            const userToken = new AccountToken()
+            userToken.email = user.email
+            userToken.password = user.password
+            userToken.token = response.token
+            localStorage.setItem('currentUser', JSON.stringify(userToken))
 
-        const account = new AccountView(iUserName, iEmail, iPassword);
+            console.log(`Login efetuado com sucesso - ${JSON.stringify(response)}`);
 
-        this.accountService.createAccount(account).subscribe((response: any) => {
-            console.log(`OK - ${JSON.stringify(response)}`);
         }, error => {
-            console.log(`Error - ${error}`);
+            console.log(`Erro ao efetuar login - ${error}`);
+            this.showMessage('Login ou senha inválidos')
         }
         )
     }
@@ -76,5 +71,4 @@ export class RegisterComponent implements OnInit {
         idvAlert.innerHTML = '';
         colErrors.style.display = 'none';
     }
-
 }

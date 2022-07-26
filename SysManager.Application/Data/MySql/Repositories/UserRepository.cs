@@ -2,8 +2,6 @@
 using SysManager.Application.Contracts;
 using SysManager.Application.Data.MySql.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SysManager.Application.Data.MySql.Repositories

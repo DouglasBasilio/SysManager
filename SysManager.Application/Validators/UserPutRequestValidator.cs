@@ -21,11 +21,6 @@ namespace SysManager.Application.Validators
                 .Must(_name => !string.IsNullOrEmpty(_name))
                 .WithMessage(SysManagerErrors.User_Post_BadRequest_UserName_Cannot_Be_Null_Or_Empty.Description());
 
-            RuleFor(contract => contract.UserName)
-                .Must(_name => !string.IsNullOrEmpty(_name))
-                .WithMessage(SysManagerErrors.User_Post_BadRequest_UserName_Cannot_Be_Null_Or_Empty.Description());
-
-
         }
     }
 }

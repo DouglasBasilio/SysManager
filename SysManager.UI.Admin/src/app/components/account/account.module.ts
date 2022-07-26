@@ -1,3 +1,6 @@
+import { AccountRoutes } from './account.routing';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
@@ -7,9 +10,11 @@ import { IconModule } from '@coreui/icons-angular';
 @NgModule({
     declarations:[
         RegisterComponent,
+        LoginComponent,
     ],
     imports:[
-        CommonModule, 
+        CommonModule,
+        RouterModule.forChild(AccountRoutes),
         CardModule,
         ButtonModule,
         ToastModule,

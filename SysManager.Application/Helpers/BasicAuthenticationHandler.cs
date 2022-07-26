@@ -12,21 +12,20 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace OrderIntegrator.Application.Herlpers
+namespace SysManager.Application.Helpers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly UserService _userService;
+
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
-            ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, UserService userService) : base(options, logger, encoder, clock)
+           ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, UserService userService) : base(options, logger, encoder, clock)
         {
             this._userService = userService;
         }
 
-
         private bool ExpiredToken(string data)
         {
-
             if (data.Length < 14)
                 return true;
 
@@ -56,20 +55,19 @@ namespace OrderIntegrator.Application.Herlpers
                 return AuthenticateResult.Fail("Missing Authorization Header");
 
             var user = new UserEntity();
+
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
 
                 var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
-                var credentials = Encoding.UTF8.GetString(credentialBytes).Split(new[] { ':' }, 2);
+                var credentials = Encoding.UTF8.GetString(credentialBytes).Split(new[] { ':' }, 3);
                 var username = credentials[0];
                 var password = credentials[1];
-
 
                 var authTokenBytes = Request.Headers["token"];
                 var credentialToken = Convert.FromBase64String(authTokenBytes);
                 var credentialsToken = Encoding.UTF8.GetString(credentialToken).Split(new[] { ':' }, 3);
-
 
                 var tokenUserName = credentialsToken[0];
                 var tokenPassWord = credentialsToken[1];
@@ -84,7 +82,6 @@ namespace OrderIntegrator.Application.Herlpers
                     return AuthenticateResult.Fail("Invalid Username or Password");
 
                 user = await _userService.Authenticate(username, password);
-
             }
             catch
             {
@@ -105,6 +102,5 @@ namespace OrderIntegrator.Application.Herlpers
 
             return AuthenticateResult.Success(ticket);
         }
-
     }
 }

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Text;
 
+
 namespace SysManager.Application.Helpers
 {
     public static class Utils
@@ -15,10 +16,9 @@ namespace SysManager.Application.Helpers
             var result = new ResultData(_data, true);
             return result;
         }
-
         public static ResultData ErrorData(object _data)
         {
-            var result = new ResultData(_data, true);
+            var result = new ResultData(_data, false);
             return result;
         }
 
@@ -37,7 +37,6 @@ namespace SysManager.Application.Helpers
                 _result.Add(item.ErrorMessage);
             return _result;
         }
-
         public static T GetAttribute<T>(this Enum valorEnum) where T : System.Attribute
         {
             var type = valorEnum.GetType();
@@ -45,7 +44,6 @@ namespace SysManager.Application.Helpers
             var attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
             return (attributes.Length > 0) ? (T)attributes[0] : null;
         }
-
         public static string Description(this Enum valorEnum)
         {
             return valorEnum.GetAttribute<DescriptionAttribute>().Description;
@@ -61,5 +59,6 @@ namespace SysManager.Application.Helpers
         {
             return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
         }
+
     }
 }

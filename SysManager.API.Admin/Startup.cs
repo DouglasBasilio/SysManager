@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OrderIntegrator.Application.Herlpers;
 using SysManager.Application.Data.MySql;
 using SysManager.Application.Data.MySql.Repositories;
+using SysManager.Application.Helpers;
 using SysManager.Application.Services;
 using System.Globalization;
 
@@ -15,6 +16,7 @@ namespace SysManager.API.Admin
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
+        readonly string CorsPolicy = "_corsPolicy";
 
         public void BeforeConfigureServices(IServiceCollection services)
         {
@@ -29,6 +31,17 @@ namespace SysManager.API.Admin
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CorsPolicy,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin()
+                                       .AllowAnyMethod()
+                                       .AllowAnyHeader();
+                                  });
+            });
 
             BeforeConfigureServices(services);
             services.AddApiVersioning();
@@ -67,6 +80,8 @@ namespace SysManager.API.Admin
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
+
+            app.UseCors(CorsPolicy);
 
             app.UseAuthentication();
             app.UseAuthorization();

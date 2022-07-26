@@ -19,10 +19,7 @@ namespace SysManager.Application.Data.MySql.Entities
             this.Active = true;
         }
 
-        public UserEntity()
-        {
-
-        }
+        public UserEntity(){}
 
         // quem vai gerar o ID é a classe e não o banco de dados
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]

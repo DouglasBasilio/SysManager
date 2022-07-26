@@ -14,13 +14,10 @@ namespace SysManager.Application.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
-
-        //injeção de dependência
         public UserService(UserRepository userRepository)
         {
             this._userRepository = userRepository;
         }
-
         public async Task<ResultData> PostAsync(UserPostRequest request)
         {
             var validator = new UserPostRequestValidator(_userRepository);
@@ -30,13 +27,11 @@ namespace SysManager.Application.Services
                 return Utils.ErrorData(validatorResult.Errors.ToErrorList());
 
             var entity = new UserEntity(request);
-
             var response = await _userRepository.CreateUser(entity);
             Console.WriteLine("Sucesso" + DateTime.Now + "\r\n");
-
             return Utils.SuccessData(response);
         }
-        
+
         public async Task<ResultData> PutAsync(UserPutRequest request)
         {
             var existUser = await _userRepository.GetUserByUserNameAndEmail(request.UserName, request.Email);
@@ -59,6 +54,7 @@ namespace SysManager.Application.Services
             return response;
         }
 
+
         public async Task<ResultData> PostLoginAsync(UserPostLoginRequest user)
         {
             var openData = user.Email + ":" + user.Password + ":" + Utils.GetDateExpired(10);
@@ -78,5 +74,6 @@ namespace SysManager.Application.Services
 
             return Utils.ErrorData(new AccountResponse { Message = "Token Fail" });
         }
+
     }
 }

@@ -3,9 +3,6 @@ using SysManager.Application.Contracts.Users.Request;
 using SysManager.Application.Data.MySql.Repositories;
 using SysManager.Application.Errors;
 using SysManager.Application.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SysManager.Application.Validators
 {

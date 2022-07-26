@@ -140,7 +140,7 @@ export abstract class ServiceBase<TResultResponse> {
             errorMessage = "Erro ao se conectar à base de dados!";
             //this.bearerToken = '';
             //this.deleteCurrentUser();
-            window.location.href = this.reloadTokenURL;
+            //window.location.href = this.reloadTokenURL;
         }
 
         if (response.status == "401") {
@@ -158,32 +158,16 @@ export abstract class ServiceBase<TResultResponse> {
         if (response.status == "500")
             errorMessage = response.error ? response.error.Message : "Erro interno no servidor!"
 
-        if (response.status == "400") {
-            /*
-            console.log('response... ');
-            console.log(JSON.stringify(response));
-
-            if (response.error.data.errors != undefined) {
-                var listMessage = [];
-                listMessage.push(response.error.data.errors);
-
-                if (listMessage[0].length > 1) {
-                    response.error.data.errors.forEach(function (item: { message: string; }) {
-                        //errorMessage += '-' + item + '</br>';
-                        errorMessage += item + '</br>';
-                        listMessage.push(item);
-                    });
+            if (response.status == "400") {
+                if(response.error.data.errors != undefined){
+                       response.error.data.errors.forEach(function (item: { message: string; }) {
+                       errorMessage += item + '</br>';
+                       });
                 }
                 else {
-                    errorMessage = response.error.data.errors[0];
+                    errorMessage = 'Erro interno no servidor!';
                 }
             }
-            else {
-                errorMessage = 'Erro interno no servidor!';
-            }*/
-        }
-
-        errorMessage = 'Erro interno no servidor!';
         return throwError(errorMessage);
     }
 
