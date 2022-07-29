@@ -1,14 +1,14 @@
+import { AccountPutRequest } from './../models/account-put-request';
 import { AccountService } from './../../../services/account-service';
-import { AccountView } from './../models/account-view';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html'
+    selector: 'app-recovery',
+    templateUrl: './recovery.component.html'
 })
 
-export class RegisterComponent implements OnInit {
+export class RecoveryComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -19,8 +19,7 @@ export class RegisterComponent implements OnInit {
 
     }
 
-    createAccount() {
-
+    recoveryAccount(){
         this.hideMessage();
         var iUserName = (<HTMLInputElement>document.getElementById("username")).value;
         var iEmail = (<HTMLInputElement>document.getElementById("email")).value;
@@ -53,13 +52,14 @@ export class RegisterComponent implements OnInit {
         }
         console.log('Tudo certo, vamos preparar para chamar o backEnd');
 
-        const account = new AccountView(iUserName, iEmail, iPassword);
+        const account = new AccountPutRequest(iUserName, iEmail, iPassword);
 
-        this.accountService.createAccount(account).subscribe((response: any) => {
+        this.accountService.recoveryAccount(account).subscribe((response: any) => {
             console.log(`OK - ${JSON.stringify(response)}`);
             this.router.navigateByUrl('/login')
         }, error => {
             console.log(`Error - ${error}`);
+            this.showMessage("Login ou senha inválidos")
         }
         )
     }
@@ -77,5 +77,4 @@ export class RegisterComponent implements OnInit {
         idvAlert.innerHTML = '';
         colErrors.style.display = 'none';
     }
-
 }

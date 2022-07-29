@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
     login(){
         this.hideMessage();
+        localStorage.removeItem('currentUser');
         var iUserName = (<HTMLInputElement>document.getElementById("username")).value;
         var iPassword = (<HTMLInputElement>document.getElementById("password")).value;
 
@@ -41,21 +42,21 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.accountService.login(user).subscribe((response: any) => {
-
-            const userToken = new AccountToken()
-            userToken.email = user.email
-            userToken.password = user.password
-            userToken.token = response.token
+        this.accountService.login(user).subscribe(
+            (response: any) => {
+            const userToken = new AccountToken(user.email, user.password, response.token)
             localStorage.setItem('currentUser', JSON.stringify(userToken))
-
             console.log(`Login efetuado com sucesso - ${JSON.stringify(response)}`);
-
+            this.router.navigateByUrl('/dashboard')
         }, error => {
             console.log(`Erro ao efetuar login - ${error}`);
             this.showMessage('Login ou senha inválidos')
         }
         )
+    }
+
+    register(){
+        this.router.navigateByUrl('/login');
     }
 
     showMessage(value: string) {

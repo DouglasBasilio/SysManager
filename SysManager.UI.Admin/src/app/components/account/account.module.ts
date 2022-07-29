@@ -1,3 +1,4 @@
+import { RecoveryComponent } from './recovery/recovery.component';
 import { AccountRoutes } from './account.routing';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -11,6 +12,7 @@ import { IconModule } from '@coreui/icons-angular';
     declarations:[
         RegisterComponent,
         LoginComponent,
+        RecoveryComponent,
     ],
     imports:[
         CommonModule,
