@@ -18,11 +18,20 @@ namespace SysManager.Application.Helpers
         }
         public static ResultData ErrorData(object _data)
         {
-            var result = new ResultData(_data, false);
-            return result;
+            if (_data.GetType() == typeof(string))
+            {
+                var _error = new ErrorResponse((string)_data);
+                return new ResultData(_error, false);
+            }
+            else if (_data.GetType() == typeof(List<string>))
+            {
+                var _error = new ErrorResponse((List<string>)_data);
+                return new ResultData(_error, false);
+            }
+            return new ResultData(_data, false);
         }
 
-        public static IActionResult Convert(ResultData _resultData)
+            public static IActionResult Convert(ResultData _resultData)
         {
             if (_resultData.Success)
                 return new ObjectResult(_resultData) { StatusCode = (int)HttpStatusCode.OK };

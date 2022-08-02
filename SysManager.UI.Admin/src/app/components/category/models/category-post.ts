@@ -1,11 +1,12 @@
-export class CategoryPost {
-    name: string;
-    active: boolean;
+import { CategoryView } from './category-view';
 
-    /*
-    constructor(_name: string, _active: boolean){
-        this.name = _name;
-        this.active = _active;
+export class CategoryPost {
+    name: string ='';
+    active: boolean = false;
+
+    
+    constructor(obj: CategoryView){
+        this.name = obj.name;
+        this.active = obj.active;
     }
-    */
 }

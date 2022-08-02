@@ -1,3 +1,6 @@
+import { CustomPaginationModule } from './../pagination/custom-pagination.module';
+import { PagerService } from './../../services/page-service';
+import { CategoryService } from './../../services/category-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -45,9 +48,12 @@ import {
         PaginationModule,
         //BarNavigatorModule,
         ModalModule,
-        ToastModule
+        ToastModule,
+        CustomPaginationModule
     ],
     providers: [
+        CategoryService,
+        PagerService,
     ],
     declarations: [
         CategoryComponent,

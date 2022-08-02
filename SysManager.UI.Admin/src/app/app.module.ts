@@ -94,7 +94,8 @@ const APP_CONTAINERS = [
     CurrencyMaskModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AccountService,
+  providers: [
+    AccountService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

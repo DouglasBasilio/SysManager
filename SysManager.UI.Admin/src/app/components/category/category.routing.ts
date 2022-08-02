@@ -19,7 +19,7 @@ export const CategoryRoutes: Routes = [
                 data: { name: 'Inserir categoria', title: 'Inserir Categoria' }
             },
             {
-                path: 'maintenance/id',
+                path: 'maintenance/:id',
                 component: CategoryMaintenanceComponent,
                 data: { name: 'Alterar categoria', title: 'Alterar Categoria' }
             },

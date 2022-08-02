@@ -67,7 +67,7 @@ namespace SysManager.Application.Data.MySql.Repositories
 
         public async Task<CategoryEntity> GetCategoryByIdAsync(Guid id)
         {
-            string strQuery = $"select id, name, active from category where id = '{id}' and active = true";
+            string strQuery = $"select id, name, active from category where id = '{id}' ";
             using (var cnx = _context.Connection())
             {
                 var result = await cnx.QueryFirstOrDefaultAsync<CategoryEntity>(strQuery);

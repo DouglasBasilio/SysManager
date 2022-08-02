@@ -28,6 +28,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('./components/category/category.module').then((m) => m.CategoryModule)
+      },
     ]
   },
   {
