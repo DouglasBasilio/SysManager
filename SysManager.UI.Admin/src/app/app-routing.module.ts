@@ -33,6 +33,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/category/category.module').then((m) => m.CategoryModule)
       },
+      {
+        path: 'unity',
+        loadChildren: () =>
+          import('./components/unity/unity.module').then((m) => m.UnityModule)
+      },
     ]
   },
   {
