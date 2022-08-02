@@ -38,6 +38,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/unity/unity.module').then((m) => m.UnityModule)
       },
+      {
+        path: 'product-type',
+        loadChildren: () =>
+          import('./components/product-type/product-type.module').then((m) => m.ProductTypeModule)
+      },
     ]
   },
   {
