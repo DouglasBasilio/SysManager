@@ -75,7 +75,6 @@ export class CategoryComponent implements OnInit {
             });
             this.setModalVisible = false;
             this.deleteId == '';
-            //this.filterView(this.formFilter.value, 1);
         }
     }
 
