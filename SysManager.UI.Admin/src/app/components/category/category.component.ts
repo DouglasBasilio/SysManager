@@ -54,7 +54,7 @@ export class CategoryComponent implements OnInit {
                 this.toastr.success(response.message, 'sucesso');
             }, error => {
                 this.spinner.hide();
-                this.utils.showErrorMessage(this.toastr, error, 'Exclusão de Categoria');
+                this.utils.showErrorMessage(error, 'Exclusão de Categoria');
             });
             this.deleteId == '';
             this.modalVisible = false;

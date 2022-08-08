@@ -11,13 +11,13 @@ export class Utils {
         this.toastr.success(message, action);
     }
 
-    showErrorMessage(toastr: ToastrService, messages: any, action?: string) {
+    showErrorMessage(messages: any, action: string) {
         var listItems = messages.split('</br>');
 
         for (let index = 0; index < listItems.length; index++) {
             const element = listItems[index];
             if (element != '' && element != undefined)
-                toastr.error(element, action);
+                this.toastr.error(element, action);
         }
     }
 
