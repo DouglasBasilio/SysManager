@@ -105,12 +105,12 @@
   <p style="font-size: 20px; color: white">Aguarde...</p>
 </ngx-spinner>
 
-<c-modal id="deleteModal" [visible]="modalVisible" (visibleChange)="handleChangeModal($event)">
+<c-modal id="deleteModal" [visible]="setModalVisible" (visibleChange)="handleChangeModal($event)">
   <c-modal-header class="modal-header bg-danger">
     <h5 cModalTitle>Exclusão de Categoria</h5>
     <button (click)="canceldelete()" cButtonClose></button>
   </c-modal-header>
-  <c-modal-body #bodyDetailId id="bodyDetailId">{{bodyDetailTodelete}}</c-modal-body>
+  <c-modal-body #bodyDetailId id="modalBodyDetail">{{modalBodyDetail}}</c-modal-body>
   <c-modal-footer>
     <button size="sm" active="active" class="me-1" (click)="canceldelete()" cButton color="light">Sair</button>
     <button size="sm" active="active" class="me-1" (click)="confirmdelete()" cButton color="dark">Concluir</button>

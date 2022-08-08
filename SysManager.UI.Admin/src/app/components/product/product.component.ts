@@ -97,38 +97,34 @@ export class ProductComponent implements OnInit {
     this.utils.navigateTo(url, id)
   }
 
+  prepareDelete(id: string, name: string) {
+    this.deleteId = id;
+    this.modalTitle = 'Excluir produto';
+    this.modalBodyDetail = 'Deseja realmente excluir o registro (' + name + ') ?';
+    this.setModalVisible = true;
+  }
+
   confirmdelete() {
 
     if (this.deleteId !== undefined && this.deleteId != '') {
-
       this.spinner.show();
       this.productService.delete(this.deleteId).subscribe((response: any) => {
         this.spinner.hide();
-        this.utils.showSuccessMessage(response.message, 'Sucesso')
+        this.utils.showSuccessMessage(response.message, 'Sucesso');
+        this.filterView(this.formFilter.value, 1);
       }, error => {
         this.spinner.hide();
         this.utils.showErrorMessage(error, 'Erro');
       });
       this.setModalVisible = false;
       this.deleteId = '';
-      this.filterView(this.formFilter.value, 1);
     }
-
   }
 
   canceldelete() {
     this.setModalVisible = false;
     this.deleteId = '';
   }
-
-  prepareDelete(id: string, name: string) {
-
-    this.deleteId = id;
-    this.modalTitle = 'Excluir tipo de produto';
-    this.modalBodyDetail = 'Deseja realmente excluir o registro (' + name + ') ?';
-    this.setModalVisible = true;
-  }
-
 
   getUnities() {
     this.spinner.show();
@@ -184,8 +180,4 @@ export class ProductComponent implements OnInit {
     this.getProdutcTypes();
 
   }
-
-
-
-
 }

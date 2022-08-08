@@ -57,7 +57,7 @@ namespace SysManager.Application.Data.MySql.Repositories
                 if (result > 0)
                     return new DefaultResponse(entity.Id.ToString(), "Produto alterado com sucesso", false);
             }
-            return new DefaultResponse("", "Erro ao tentar alterada produto", true);
+            return new DefaultResponse("", "Erro ao tentar alterar produto", true);
         }
 
         public async Task<DefaultResponse> DeleteAsync(Guid id)
@@ -67,9 +67,9 @@ namespace SysManager.Application.Data.MySql.Repositories
             {
                 var result = await cnx.ExecuteAsync(strQuery);
                 if (result > 0)
-                    return new DefaultResponse(id.ToString(), "Produto excluída com sucesso", false);
+                    return new DefaultResponse(id.ToString(), "Produto excluído com sucesso", false);
             }
-            return new DefaultResponse("", "Erro ao tentar excluír produto", true);
+            return new DefaultResponse("", "Erro ao tentar excluir produto", true);
         }
 
         public async Task<ProductEntity> GetProductByIdAsync(Guid id)

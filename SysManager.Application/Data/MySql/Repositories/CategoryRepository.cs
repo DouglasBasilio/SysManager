@@ -50,7 +50,7 @@ namespace SysManager.Application.Data.MySql.Repositories
                 if (result > 0)
                     return new DefaultResponse(entity.Id.ToString(), "Categoria alterada com sucesso", false);
             }
-            return new DefaultResponse(entity.Id.ToString(), "Erro ao tentar alterada Categoria", true);
+            return new DefaultResponse(entity.Id.ToString(), "Erro ao tentar alterar Categoria", true);
         }
 
         public async Task<DefaultResponse> DeleteByIdAsync(Guid id)
@@ -62,7 +62,7 @@ namespace SysManager.Application.Data.MySql.Repositories
                 if (result > 0)
                     return new DefaultResponse(id.ToString(), "Categoria excluída com sucesso", false);
             }
-            return new DefaultResponse(id.ToString(), "Erro ao tentar excluír Categoria", true);
+            return new DefaultResponse(id.ToString(), "Erro ao tentar excluir Categoria", true);
         }
 
         public async Task<CategoryEntity> GetCategoryByIdAsync(Guid id)

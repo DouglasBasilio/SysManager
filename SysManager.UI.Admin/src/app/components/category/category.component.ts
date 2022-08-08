@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PagerService } from './../../services/page-service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CategoryFilter } from './models/category-filter'
 import { CategoryService } from 'src/app/services/category-service'
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,17 +14,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 
 export class CategoryComponent implements OnInit {
+    @Input() modalTitle = ''
     returnUrl: string = '';
-    @Input() bodyDetailTodelete = '';
+    @Input() modalBodyDetail = '';
     public deleteId = '';
-
-    public modalVisible = false;
+    public setModalVisible = false;
     public pager: any = {};
     pagedItems: any[] = [];
     firstPage = 1;
     itemsByPage = 10;
 
-    constructor(private route: ActivatedRoute,
+    constructor(
         private router: Router,
         private formbuilder: FormBuilder,
         private categoryService: CategoryService,
@@ -32,9 +32,7 @@ export class CategoryComponent implements OnInit {
         private pagerService: PagerService,
         private toastr: ToastrService,
         private utils: Utils
-    ) {
-
-    }
+    ) { }
 
     formFilter = new FormGroup({
         name: this.formbuilder.control(''),
@@ -43,47 +41,7 @@ export class CategoryComponent implements OnInit {
     });
 
 
-    ngOnInit() {
-    }
-
-    confirmdelete() {
-        if (this.deleteId !== undefined && this.deleteId != '') {
-            this.spinner.show();
-            this.categoryService.delete(this.deleteId).subscribe((response: any) => {
-                this.spinner.hide();
-                this.toastr.success(response.message, 'sucesso');
-            }, error => {
-                this.spinner.hide();
-                this.utils.showErrorMessage(error, 'Exclusão de Categoria');
-            });
-            this.deleteId == '';
-            this.modalVisible = false;
-            var filter = new CategoryFilter('', 'todos', this.firstPage, this.formFilter.value);
-            this.filterView(filter, 1);
-            //this.filterView(this.formFilter.value, 1);
-        }
-    }
-
-    canceldelete() {
-        this.modalVisible = false;
-    }
-
-    handleChangeModal(event: any) {
-
-    }
-
-    prepareDelete(id: string, name: string) {
-        this.deleteId = id;
-        this.bodyDetailTodelete = `Deseja mesmo excluir a categoria (${name}) ?`;
-        this.modalVisible = true;
-    }
-
-    redirectUpdate(url: string, id: string) {
-        this.router.navigate([url, id]);
-    }
-    redirectTo(url: string) {
-        this.router.navigate([url]);
-    }
+    ngOnInit() { }
 
     filterView(filter: CategoryFilter, page: number) {
         let _filter = new CategoryFilter(filter.name, filter.active, page, filter.itemsByPage)
@@ -95,6 +53,47 @@ export class CategoryComponent implements OnInit {
         }, error => {
             this.spinner.hide();
         });
+    }
+
+    prepareDelete(id: string, name: string) {
+        this.deleteId = id;
+        this.modalTitle = 'Excluir categoria';
+        this.modalBodyDetail = `Deseja mesmo excluir o registro (${name}) ?`;
+        this.setModalVisible = true;
+    }
+
+    confirmdelete() {
+        if (this.deleteId !== undefined && this.deleteId != '') {
+            this.spinner.show();
+            this.categoryService.delete(this.deleteId).subscribe((response: any) => {
+                this.spinner.hide();
+                this.utils.showSuccessMessage(response.message, 'Sucesso');
+                this.filterView(this.formFilter.value, 1);
+            }, error => {
+                this.spinner.hide();
+                this.utils.showErrorMessage(error, 'Exclusão de Categoria');
+            });
+            this.setModalVisible = false;
+            this.deleteId == '';
+            //this.filterView(this.formFilter.value, 1);
+        }
+    }
+
+    canceldelete() {
+        this.setModalVisible = false;
+        this.deleteId = '';
+    }
+
+    handleChangeModal(event: any) {
+
+    }
+
+    redirectUpdate(url: string, id: string) {
+        this.router.navigate([url, id]);
+    }
+
+    redirectTo(url: string) {
+        this.router.navigate([url]);
     }
 
 }

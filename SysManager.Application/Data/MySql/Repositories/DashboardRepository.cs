@@ -36,7 +36,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
             else
             {
-                _group = $"(case when {field} = 0 then 'Inactive' when { field} = 1 then 'Active' end) as 'group'";
+                _group = $"(case when {field} = 0 then 'Inactive' when {field} = 1 then 'Active' end) as 'group'";
                 _groupBy = field;
                 _entity = entity;
             }
