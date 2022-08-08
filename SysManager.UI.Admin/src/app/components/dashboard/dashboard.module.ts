@@ -19,6 +19,7 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
 import { DashboardComponent } from './dashboard.component';
 import { RouterModule } from '@angular/router';
 import { DashboardRoute } from './dashboard.routing';
+import { DashboardService } from 'src/app/services/dashboard-service';
 
 @NgModule({
   imports: [
@@ -39,7 +40,10 @@ import { DashboardRoute } from './dashboard.routing';
     AvatarModule,
     TableModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [DashboardComponent],
+  providers: [
+    DashboardService,
+  ],
 })
 export class DashboardModule {
 }

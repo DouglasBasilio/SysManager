@@ -1,3 +1,4 @@
+import { Utils } from './../../Utils/utils';
 import { ToastrService } from 'ngx-toastr';
 import { PagerService } from './../../services/page-service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -29,7 +30,8 @@ export class CategoryComponent implements OnInit {
         private categoryService: CategoryService,
         private spinner: NgxSpinnerService,
         private pagerService: PagerService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private utils: Utils
     ) {
 
     }
@@ -52,7 +54,7 @@ export class CategoryComponent implements OnInit {
                 this.toastr.success(response.message, 'sucesso');
             }, error => {
                 this.spinner.hide();
-                this.sendAnyMessageErro(this.toastr, error, 'Exclusão de Categoria')
+                this.utils.showErrorMessage(this.toastr, error, 'Exclusão de Categoria');
             });
             this.deleteId == '';
             this.modalVisible = false;
@@ -93,15 +95,6 @@ export class CategoryComponent implements OnInit {
         }, error => {
             this.spinner.hide();
         });
-    }
-
-    sendAnyMessageErro(toastr: ToastrService, messages: any, action: string) {
-        var listItems = messages.split('</br>');
-        for (let index = 0; index < listItems.length; index++) {
-            const element = listItems[index];
-            if (element != '' && element != undefined)
-                toastr.error(element, action);
-        }
     }
 
 }

@@ -8,7 +8,7 @@ import { DefaultLayoutComponent } from './containers';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -42,6 +42,11 @@ const routes: Routes = [
         path: 'product-type',
         loadChildren: () =>
           import('./components/product-type/product-type.module').then((m) => m.ProductTypeModule)
+      },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('./components/product/product.module').then((m) => m.ProductModule)
       },
     ]
   },

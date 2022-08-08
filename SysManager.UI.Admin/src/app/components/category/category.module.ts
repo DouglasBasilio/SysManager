@@ -1,3 +1,4 @@
+import { Utils } from './../../Utils/utils';
 import { CustomPaginationModule } from './../pagination/custom-pagination.module';
 import { PagerService } from './../../services/page-service';
 import { CategoryService } from './../../services/category-service';
@@ -54,6 +55,7 @@ import {
     providers: [
         CategoryService,
         PagerService,
+        Utils
     ],
     declarations: [
         CategoryComponent,

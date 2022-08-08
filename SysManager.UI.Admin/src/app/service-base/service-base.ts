@@ -1,4 +1,3 @@
-
 import { Observable } from "rxjs";
 import { HttpClient, HttpParams, HttpHeaders, HttpXhrBackend } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -133,6 +132,25 @@ export abstract class ServiceBase<TResultResponse> {
         );
     }
 
+    getDashboard(entity: string, field: string, join: string, fieldjoin: string): Observable<TResultResponse[]> {
+        this.headers = this.getHeaderToken();
+        let endpoint = this.servicesConfig.endpoint + "/GetDashBoard";
+
+        let queryString = "";
+
+        queryString = queryString + "entity" + "=" + entity + "&";
+        queryString = queryString + "field" + "=" + field + "&";
+        queryString = queryString + "join" + "=" + join + "&";
+        queryString = queryString + "fieldjoin" + "=" + fieldjoin + "&";
+
+        const params = new HttpParams({ fromString: queryString });
+
+        return this.http.get(endpoint, { params, headers: this.headers }).pipe(
+            map(this.extractData),
+            catchError(this.serviceError.bind(this))
+        );
+    }
+
     protected serviceError(response: any) {
 
         let errorMessage = '';
@@ -158,16 +176,18 @@ export abstract class ServiceBase<TResultResponse> {
         if (response.status == "500")
             errorMessage = response.error ? response.error.Message : "Erro interno no servidor!"
 
-            if (response.status == "400") {
-                if(response.error.data.errors != undefined){
-                       response.error.data.errors.forEach(function (item: { message: string; }) {
-                       errorMessage += item + '</br>';
-                       });
-                }
-                else {
-                    errorMessage = 'Erro interno no servidor!';
-                }
+
+        if (response.status == "400") {
+            if (response.error.data.errors != undefined) {
+                response.error.data.errors.forEach(function (item: { message: string; }) {
+                    errorMessage += item + '</br>';
+                });
             }
+            else {
+                errorMessage = 'Erro interno no servidor!';
+            }
+        }
+
         return throwError(errorMessage);
     }
 
