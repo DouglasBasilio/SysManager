@@ -13,15 +13,15 @@ import { UnityService } from '../../services/unity-service';
 })
 
 export class UnityComponent implements OnInit {
-    returnUrl: string = '';
     @Input() bodyDetailTodelete = '';
     public deleteId = '';
-
+    
     public modalVisible = false;
     public pager: any = {};
     pagedItems: any[] = [];
     firstPage = 1;
     itemsByPage = 10;
+    returnUrl: string = '';
 
     constructor(private route: ActivatedRoute,
         private router: Router,

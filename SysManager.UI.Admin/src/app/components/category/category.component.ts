@@ -15,7 +15,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class CategoryComponent implements OnInit {
     @Input() modalTitle = ''
-    returnUrl: string = '';
     @Input() modalBodyDetail = '';
     public deleteId = '';
     public setModalVisible = false;
@@ -23,6 +22,7 @@ export class CategoryComponent implements OnInit {
     pagedItems: any[] = [];
     firstPage = 1;
     itemsByPage = 10;
+    returnUrl: string = '';
 
     constructor(
         private router: Router,
