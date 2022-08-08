@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,11 @@ namespace SysManager.Application.Helpers
         public static string ToBase64Encode(this string data)
         {
             return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
+        }
+
+        public static string ToJson(object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
         }
 
     }

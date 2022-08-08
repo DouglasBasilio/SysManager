@@ -4,10 +4,14 @@ using MySql.Data.MySqlClient;
 namespace SysManager.Application.Data.MySql
 {
     // abre a conexão com o mysql
+
     public class MySqlContext
     {
         private MySqlConnection connection;
         private readonly string connectionString = "/";
+
+        public MySqlContext() { }
+
         public MySqlContext(IOptions<AppConnectionSettings> appsettings)
         {
             connectionString = appsettings.Value.DefaultConnection;

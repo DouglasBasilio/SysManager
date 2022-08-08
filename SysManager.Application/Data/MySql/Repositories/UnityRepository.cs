@@ -21,7 +21,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         }
 
         //POST
-        public async Task<DefaultResponse> CreateAsync(UnityEntity entity)
+        public virtual async Task<DefaultResponse> CreateAsync(UnityEntity entity)
         {
             var _sql = $"INSERT INTO unity(id, name, active) VALUE('{entity.Id}', '{entity.Name}', {entity.Active})";
             using (var cnx = _context.Connection())
@@ -33,7 +33,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             return new DefaultResponse(entity.Id.ToString(),"Falha ao tentar cadastrar uma unidade de medida", true);
         }
         //PUT
-        public async Task<DefaultResponse> UpdateAsync(UnityEntity entity)
+        public virtual async Task<DefaultResponse> UpdateAsync(UnityEntity entity)
         {
             var _sql = $"update unity set name = '{entity.Name}', active = {entity.Active} where id = '{entity.Id}'";
             using (var cnx = _context.Connection())
@@ -46,7 +46,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         }
 
         //GET
-        public async Task<UnityEntity> GetByIdAsync(Guid id)
+        public virtual async Task<UnityEntity> GetByIdAsync(Guid id)
         {
             var _sql = $"select id, name, active from unity where id = '{id}' limit 1";
             using (var cnx = _context.Connection())
@@ -56,7 +56,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
         }
 
-        public async Task<UnityEntity> GetByNameAsync(string name)
+        public virtual async Task<UnityEntity> GetByNameAsync(string name)
         {
             var _sql = $"SELECT id, name, active from unity WHERE name = '{name}' limit 1";
             using (var cnx = _context.Connection())
@@ -66,7 +66,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
         }
 
-        public async Task<PaginationResponse<UnityEntity>> GetByFilterAsync(UnityGetFilterRequest filter)
+        public virtual async Task<PaginationResponse<UnityEntity>> GetByFilterAsync(UnityGetFilterRequest filter)
         {
             var _sql = new StringBuilder("select * from unity where 1=1");
             var _where = new StringBuilder();
@@ -104,7 +104,7 @@ namespace SysManager.Application.Data.MySql.Repositories
         }
     
         //DELETE
-        public async Task<DefaultResponse> DeleteByIdAsync(Guid id)
+        public virtual async Task<DefaultResponse> DeleteByIdAsync(Guid id)
         {
             var _sql = $"delete from unity where id = '{id}'";
             using (var cnx = _context.Connection())
