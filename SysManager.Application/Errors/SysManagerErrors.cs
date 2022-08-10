@@ -53,6 +53,9 @@ namespace SysManager.Application.Errors
         #region DELETE Unity
         [Description("Unidade de medida inválida ou inexistente")]
         Unity_Delete_BadRequest_Id_Is_Invalid_Or_Inexistent,
+
+        [Description("Unidade de medida esta relacionada à {0} produto(s)")]
+        Unity_Delete_BadRequest_Id_Gave_Dependence,
         #endregion
 
         #region GET Unity

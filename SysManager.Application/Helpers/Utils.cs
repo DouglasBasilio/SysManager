@@ -72,7 +72,7 @@ namespace SysManager.Application.Helpers
 
         public static string ToJson(object obj)
         {
-            return JsonConvert.SerializeObject(obj);
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
     }

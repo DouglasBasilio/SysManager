@@ -82,6 +82,24 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
         }
 
+        public async Task<int> GetCountProductByDependenceAsync(string dependence, Guid id)
+        {
+            try
+            {
+                string strQuery = $"select count(1) as count from product where {dependence} = '{id}'";
+                using (var cnx = _context.Connection())
+                {
+                    var result = await cnx.QueryFirstOrDefaultAsync<int>(strQuery);
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
         public async Task<ProductEntity> GetProductByNameAsync(string name)
         {
             string strQuery = $"select id, name, productCode, productTypeId, categoryId, unityId, costPrice, percentage, price, active from product where name = '{name}' limit 1";

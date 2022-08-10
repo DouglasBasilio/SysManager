@@ -1,3 +1,4 @@
+import { UnityService } from './services/unity-service';
 import { AccountService } from './services/account-service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -96,6 +97,7 @@ const APP_CONTAINERS = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     AccountService,
+    UnityService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

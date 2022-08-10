@@ -1,3 +1,4 @@
+import { Utils } from './../../Utils/utils';
 import { CustomPaginationModule } from './../pagination/custom-pagination.module';
 import { PagerService } from './../../services/page-service';
 import { UnityService } from './../../services/unity-service';
@@ -54,6 +55,7 @@ import {
     providers: [
         UnityService,
         PagerService,
+        Utils
     ],
     declarations: [
         UnityComponent,
