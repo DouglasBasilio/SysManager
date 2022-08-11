@@ -1,7 +1,9 @@
 ﻿using Moq;
 using SysManager.Application.Contracts;
+using SysManager.Application.Contracts.Unity.Request;
 using SysManager.Application.Data.MySql.Entities;
 using SysManager.Application.Data.MySql.Repositories;
+using SysManager.Application.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,6 +30,16 @@ namespace SysManager.Tests.Mocks
         public static void MockUpdateAsync(this Mock<UnityRepository> mockRepository, DefaultResponse response)
         {
             mockRepository.Setup(x => x.UpdateAsync(It.IsAny<UnityEntity>())).ReturnsAsync(response);
+        }
+
+        public static void MockGetByFilterAsync(this Mock<UnityRepository> mockRepository, PaginationResponse<UnityEntity> response)
+        {
+            mockRepository.Setup(x => x.GetByFilterAsync(It.IsAny<UnityGetFilterRequest>())).ReturnsAsync(response);
+        }
+
+        public static void MockDeleteByIdAsync(this Mock<UnityRepository> mockRepository, DefaultResponse response)
+        {
+            mockRepository.Setup(repository => repository.DeleteByIdAsync(It.IsAny<Guid>())).ReturnsAsync(response);
         }
     }
 }

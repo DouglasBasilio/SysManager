@@ -12,6 +12,7 @@ C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\SysManager.Tests.runt
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\SysManager.Tests.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\SysManager.Tests.pdb
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Dapper.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\FluentValidation.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
@@ -34,6 +35,7 @@ C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatfor
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.CrossPlatEngine.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.Utilities.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.Common.dll
+C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Moq.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\MySql.Data.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Ubiety.Dns.Core.dll
 C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Zstandard.Net.dll
@@ -122,5 +124,3 @@ C:\git\SysManager\SysManager.Tests\obj\Debug\netcoreapp3.1\SysManager.Tests.cspr
 C:\git\SysManager\SysManager.Tests\obj\Debug\netcoreapp3.1\SysManager.Tests.dll
 C:\git\SysManager\SysManager.Tests\obj\Debug\netcoreapp3.1\SysManager.Tests.pdb
 C:\git\SysManager\SysManager.Tests\obj\Debug\netcoreapp3.1\SysManager.Tests.genruntimeconfig.cache
-C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
-C:\git\SysManager\SysManager.Tests\bin\Debug\netcoreapp3.1\Moq.dll

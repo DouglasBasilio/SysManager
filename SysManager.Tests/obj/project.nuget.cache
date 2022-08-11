@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "a+3zcWMj94+AJLAwHUY/HuMmPase+aPS1A7gVDmcRRZ5+Ke8ubCRKiN+CM6488myGbCcomUNkazfCjV1mRcQhw==",
+  "dgSpecHash": "1mjDAFDDbuYZfwGvT0yg8RF5KEkTBb5SFUc26LubpLPiQx+UjtnLTaM5PyVIGKnpmgPotndE2Y9Fd/uH5Njp7g==",
   "success": true,
   "projectFilePath": "C:\\git\\SysManager\\SysManager.Tests\\SysManager.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Douglas\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
+    "C:\\Users\\Douglas\\.nuget\\packages\\coverlet.msbuild\\3.1.2\\coverlet.msbuild.3.1.2.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
     "C:\\Users\\Douglas\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

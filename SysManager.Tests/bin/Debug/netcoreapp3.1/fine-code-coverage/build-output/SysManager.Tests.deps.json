@@ -12,6 +12,7 @@
           "Moq": "4.18.2",
           "SysManager.Application": "1.0.0",
           "coverlet.collector": "3.0.2",
+          "coverlet.msbuild": "3.1.2",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.3"
         },
@@ -39,6 +40,7 @@
         }
       },
       "coverlet.collector/3.0.2": {},
+      "coverlet.msbuild/3.1.2": {},
       "Dapper/2.0.35": {
         "dependencies": {
           "System.Reflection.Emit.Lightweight": "4.7.0"
@@ -1848,6 +1850,13 @@
       "sha512": "sha512-iBvPAIDaI7j/iMx/DzCGCJ3rdiOmel9VINEfaTiBv/NKIGHOP4X3hqc6Q1wgMtArEshlhXexQknP17SK4vXb1w==",
       "path": "coverlet.collector/3.0.2",
       "hashPath": "coverlet.collector.3.0.2.nupkg.sha512"
+    },
+    "coverlet.msbuild/3.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QhM0fnDtmIMImY7oxyQ/kh1VYtRxPyRVeLwRUGuUvI6Xp83pSYG9gerK8WgJj4TzUl7ISziADUGtIWKhtlbkbQ==",
+      "path": "coverlet.msbuild/3.1.2",
+      "hashPath": "coverlet.msbuild.3.1.2.nupkg.sha512"
     },
     "Dapper/2.0.35": {
       "type": "package",

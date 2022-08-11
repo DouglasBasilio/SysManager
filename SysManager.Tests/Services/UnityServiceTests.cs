@@ -28,6 +28,11 @@ namespace SysManager.Tests.Services
             _productRepository = new Mock<ProductRepository>(new MySqlContext());
         }
 
+        private void SetupService()
+        {
+            _unityService = new UnityService(_unityRepository.Object, _productRepository.Object);
+        }
+
         [Fact]
         public async Task Unity_Post_Error()
         {
@@ -40,7 +45,7 @@ namespace SysManager.Tests.Services
 
             var entity = new UnityEntity(request);
             _unityRepository.MockGetByNameAsync(entity);
-            _unityService = new UnityService(_unityRepository.Object, _productRepository.Object);
+            SetupService();
 
             //Act
             var result = await _unityService.PostAsync(request);
@@ -63,7 +68,7 @@ namespace SysManager.Tests.Services
             var response = new DefaultResponse(Guid.NewGuid().ToString(), "Unidade de medida criada com sucesso", false);
 
             _unityRepository.MockCreateAsync(response);
-            _unityService = new UnityService(_unityRepository.Object, _productRepository.Object);
+            SetupService();
 
             //Act
             var result = await _unityService.PostAsync(request);
@@ -97,7 +102,7 @@ namespace SysManager.Tests.Services
             _unityRepository.MockGetByNameAsync(entity);
             _unityRepository.MockUpdateAsync(defaultResponse);
 
-            _unityService = new UnityService(_unityRepository.Object, _productRepository.Object);
+            SetupService();
 
             //Act
             var result = await _unityService.PutAsync(request);
@@ -136,7 +141,7 @@ namespace SysManager.Tests.Services
             var unityResponse = new UnityEntity() { Id = Guid.Empty };
 
             _unityRepository.MockGetByNameAsync(unityResponse);
-            _unityService = new UnityService(_unityRepository.Object, _productRepository.Object);
+            SetupService();
 
             //Act
             var result = await _unityService.PutAsync(request);
@@ -150,5 +155,160 @@ namespace SysManager.Tests.Services
             Assert.Equal(jsonResponse, jsonData);
         }
 
+        [Fact(DisplayName = "Test GetById Success")]
+        public async Task Unity_GetById_Success()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            var response = new UnityEntity()
+            {
+                Id = id,
+                Name = "test",
+                Active = true
+            };
+
+            _unityRepository.MockGetByIdAsync(response);
+            SetupService();
+
+            //Act
+            var result = await _unityService.GetByIdAsync(id);
+
+            //Assert
+            Assert.True(result.Success);
+
+            var jsonResponse = Utils.ToJson(response);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
+
+        [Fact(DisplayName = "Test GetById Error")]
+        public async Task Unity_GetById_Error()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            var response = new
+            {
+                Errors = new List<string>() 
+                {
+                    SysManagerErrors.Unity_Get_BadRequest_Id_Is_Invalid_Or_Inexistent.Description()
+                }
+            };
+
+            SetupService();
+
+            //Act
+            var result = await _unityService.GetByIdAsync(id);
+
+            //Assert
+            Assert.False(result.Success);
+
+            var jsonResponse = Utils.ToJson(response);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
+
+        [Fact(DisplayName = "Test GetByFilter Success")]
+        public async Task Unity_GetByFilter_Success()
+        {
+            //Arrange
+            
+            var request = new UnityGetFilterRequest()
+            {
+                Active = "todos",
+                Name = "test",
+                page = 1,
+                pageSize = 10
+            };
+
+            var listResponse = new List<UnityEntity>()
+                {
+                    new UnityEntity() { Name = "teste" },
+                    new UnityEntity() { Name = "teste 2" }
+                };
+
+            var response = new PaginationResponse<UnityEntity>()
+            {
+                Items = listResponse.ToArray(),
+                _page = 1,
+                _pageSize = 2,
+                _total = 10
+            };
+
+            _unityRepository.MockGetByFilterAsync(response);
+            SetupService();
+
+            //Act
+            var result = await _unityService.GetByFilterAsync(request);
+
+            //Assert
+            Assert.True(result.Success);
+
+            var jsonResponse = Utils.ToJson(response);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
+
+        [Fact(DisplayName = "Test DeleteById Success")]
+        public async Task Unity_DeleteById_Success()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            var request = new UnityPutRequest()
+            {
+                Id = id,
+                Name = "test",
+                Active = true
+            };
+
+            var entity = new UnityEntity(request);
+            var response = new DefaultResponse(id.ToString(), "Unidade de medida excluída com sucesso", false);
+
+            _unityRepository.MockGetByIdAsync(entity);
+            //_unityRepository.MockGetByNameAsync(entity);
+            _unityRepository.MockDeleteByIdAsync(response);
+
+            SetupService();
+
+            //Act
+            var result = await _unityService.DeleteByIdAsync(id);
+
+            //Assert
+            Assert.True(result.Success);
+
+            var jsonResponse = Utils.ToJson(response);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
+
+        [Fact(DisplayName = "Test DeleteById Error")]
+        public async Task Unity_DeleteById_Error()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            var response = new
+            {
+                Errors = new List<string>()
+                {
+                    SysManagerErrors.Unity_Delete_BadRequest_Id_Is_Invalid_Or_Inexistent.Description()
+                }
+            };
+
+            SetupService();
+
+            //Act
+            var result = await _unityService.DeleteByIdAsync(id);
+
+            //Assert
+            Assert.False(result.Success);
+
+            var jsonResponse = Utils.ToJson(response);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
     }
 }
