@@ -82,7 +82,7 @@ namespace SysManager.Application.Data.MySql.Repositories
             }
         }
 
-        public async Task<int> GetCountProductByDependenceAsync(string dependence, Guid id)
+        public virtual async Task<int> GetCountProductByDependenceAsync(string dependence, Guid id)
         {
             try
             {

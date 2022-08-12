@@ -256,19 +256,19 @@ namespace SysManager.Tests.Services
         {
             //Arrange
             var id = Guid.NewGuid();
-            var request = new UnityPutRequest()
+
+            var response = new UnityEntity()
             {
                 Id = id,
                 Name = "test",
-                Active = true
+                Active = false
             };
 
-            var entity = new UnityEntity(request);
-            var response = new DefaultResponse(id.ToString(), "Unidade de medida excluída com sucesso", false);
+            var defaultResponse = new DefaultResponse(id.ToString(), "Unidade de medida excluída com sucesso", false);
 
-            _unityRepository.MockGetByIdAsync(entity);
-            //_unityRepository.MockGetByNameAsync(entity);
-            _unityRepository.MockDeleteByIdAsync(response);
+            _unityRepository.MockGetByIdAsync(response);
+            _productRepository.MockGetCountProductByDependenceAsync(0);
+            _unityRepository.MockDeleteByIdAsync(defaultResponse);
 
             SetupService();
 
@@ -277,6 +277,43 @@ namespace SysManager.Tests.Services
 
             //Assert
             Assert.True(result.Success);
+
+            var jsonResponse = Utils.ToJson(defaultResponse);
+            var jsonData = Utils.ToJson(result.Data);
+
+            Assert.Equal(jsonResponse, jsonData);
+        }
+
+        [Fact(DisplayName = "Test DeleteById Dependence Error")]
+        public async Task Unity_DeleteById_Dependence_Error()
+        {
+            //Arrange
+            var id = Guid.NewGuid();
+            var response = new
+            {
+                Errors = new List<string>()
+                {
+                    string.Format(SysManagerErrors.Unity_Delete_BadRequest_Id_Gave_Dependence.Description(), 1)
+                }
+            };
+
+            var unityResponse = new UnityEntity()
+            {
+                Id = id,
+                Name = "test",
+                Active = false
+            };
+
+            _unityRepository.MockGetByIdAsync(unityResponse);
+            _productRepository.MockGetCountProductByDependenceAsync(1);
+
+            SetupService();
+
+            //Act
+            var result = await _unityService.DeleteByIdAsync(id);
+
+            //Assert
+            Assert.False(result.Success);
 
             var jsonResponse = Utils.ToJson(response);
             var jsonData = Utils.ToJson(result.Data);
